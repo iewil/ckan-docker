@@ -7,12 +7,10 @@ sudo apt install python-pastescript
 sudo mkdir -p /usr/lib/ckan/default
 sudo chown <username> /usr/lib/ckan/default
 
-sudo mkdir -p /usr/lib/ckan/default
-sudo chown <username> /usr/lib/ckan/default
 virtualenv --no-site-packages /usr/lib/ckan/default
 . /usr/lib/ckan/default/bin/activate
 
- pip install -e 'git+https://github.com/ckan/ckan.git#egg=ckan'
+pip install -e 'git+https://github.com/ckan/ckan.git#egg=ckan'
  
 pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt
 deactivate
