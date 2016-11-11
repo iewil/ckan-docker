@@ -1,0 +1,28 @@
+FROM ubuntu:16.0.4
+MAINTAINER Loh Li Wei
+
+# set UTF-8 locale
+RUN locale-gen en_US.UTF-8 && \
+    echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+
+# Set timezone
+RUN echo "Asia/Singapore" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
+
+# Install the required packages
+RUN apt-get install sudo
+RUN sudo apt-get update
+RUN sudo apt-get install python-dev \
+	postgresql \
+	libpq-dev \
+	python-pip \	
+	python-virtualenv \
+	git-core \
+	solr-jetty
+
+
+# Install CKAN into a Python virtual environment
+RUN sudo mkdir -p /usr/lib/ckan/default
+RUN sudo chown <username> /usr/lib/ckan/default
+RUN virtualenv --no-site-packages /usr/lib/ckan/default
+RUN . /usr/lib/ckan/default/bin/activate
